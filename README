@@ -1,0 +1,11 @@
+These are plugins and related client code used with tiddlywebwiki,
+the extension of TiddlyWeb that provides support for producing
+TiddlyWikis and saving and diffing tiddlers.
+
+   http://tiddlyweb.com/
+   http://github.com/tiddlyweb/tiddlyweb
+   http://github.com/tiddlyweb/tiddlywebwiki
+
+These files have have been gathered here from a few different locations
+to make them more accessible. Please feel free to fork and submit pull
+requests with improvements and fixes.
