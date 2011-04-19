@@ -34,7 +34,21 @@ var plugin = config.extensions.BinaryTiddlersPlugin = {
 	endsWith: function(str, suffix) {
 		return str.length >= suffix.length &&
 			str.substr(str.length - suffix.length) == suffix;
-	}
+	},
+        isLink: function(tiddler) {
+            return this.isBinary(tiddler) && tiddler.text.indexOf("<html>") != -1
+        }
+};
+
+// Disable edit for linked tiddlers (for now)
+// This will be changed to a GET then PUT
+config.commands.editTiddler.isEnabled = function(tiddler) {
+    var existingTest = config.commands.editTiddler.isEnabled;
+    if (existingTest) {
+        return existingTest && !plugin.isLink(tiddler);
+    } else {
+        return !plugin.isLink(tiddler);
+    }
 };
 
 // hijack text viewer to add special handling for binary tiddlers
@@ -42,7 +56,8 @@ var _view = config.macros.view.views.wikified;
 config.macros.view.views.wikified = function(value, place, params, wikifier,
 		paramString, tiddler) {
 	var ctype = tiddler.fields["server.content-type"];
-	if(params[0] == "text" && ctype && !tiddler.tags.contains("systemConfig")) {
+        console.log(tiddler.title, plugin.isLink(tiddler));
+	if(params[0] == "text" && ctype && !tiddler.tags.contains("systemConfig") && !plugin.isLink(tiddler)) {
 		var el;
 		if(plugin.isBinary(tiddler)) {
 			var uri = "data:%0;base64,%1".format([ctype, tiddler.text]); // TODO: fallback for legacy browsers
