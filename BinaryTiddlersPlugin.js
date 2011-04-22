@@ -2,7 +2,7 @@
 |''Name''|BinaryTiddlersPlugin|
 |''Description''|renders base64-encoded binary tiddlers as images or links|
 |''Author''|FND|
-|''Version''|0.3.0|
+|''Version''|0.3.1|
 |''Status''|@@beta@@|
 |''Source''|http://svn.tiddlywiki.org/Trunk/association/plugins/BinaryTiddlersPlugin.js|
 |''License''|[[BSD|http://www.opensource.org/licenses/bsd-license.php]]|
