@@ -56,7 +56,6 @@ var _view = config.macros.view.views.wikified;
 config.macros.view.views.wikified = function(value, place, params, wikifier,
 		paramString, tiddler) {
 	var ctype = tiddler.fields["server.content-type"];
-        console.log(tiddler.title, plugin.isLink(tiddler));
 	if(params[0] == "text" && ctype && !tiddler.tags.contains("systemConfig") && !plugin.isLink(tiddler)) {
 		var el;
 		if(plugin.isBinary(tiddler)) {
