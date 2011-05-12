@@ -2,7 +2,7 @@
 |''Name''|BinaryTiddlersPlugin|
 |''Description''|renders base64-encoded binary tiddlers as images or links|
 |''Author''|FND|
-|''Version''|0.3.1|
+|''Version''|0.3.2|
 |''Status''|@@beta@@|
 |''Source''|http://svn.tiddlywiki.org/Trunk/association/plugins/BinaryTiddlersPlugin.js|
 |''License''|[[BSD|http://www.opensource.org/licenses/bsd-license.php]]|
@@ -29,7 +29,10 @@ var plugin = config.extensions.BinaryTiddlersPlugin = {
 		return ctype ? !this.isTextual(ctype) : false;
 	},
 	isTextual: function(ctype) {
-		return ctype.indexOf("text/") == 0 || this.endsWith(ctype, "+xml");
+		return ctype.indexOf("text/") == 0
+			|| this.endsWith(ctype, "+xml")
+			|| ctype == 'application/json'
+			|| ctype == 'application/javascript';
 	},
 	endsWith: function(str, suffix) {
 		return str.length >= suffix.length &&
